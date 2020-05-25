@@ -33,19 +33,50 @@ class MovieListView extends StatelessWidget {
                 leading: CircleAvatar(
                   child: Container(
                     decoration: BoxDecoration(
-                      // color: Colors.blue,
-                      borderRadius: BorderRadius.circular(13.9)
-                    ),
+                        // color: Colors.blue,
+                        borderRadius: BorderRadius.circular(13.9)),
                     child: Text('H'),
                   ),
                 ),
                 trailing: Text('...'),
                 title: Text(movies[index]),
                 subtitle: Text('sub'),
-                onTap: ()=>debugPrint('Movie name: ${movies.elementAt(index)}'),
+                // onTap: () =>
+                //     debugPrint('Movie name: ${movies.elementAt(index)}'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MovieListViewDetails()));
+                },
               ),
             );
           }),
+    );
+  }
+}
+
+// New route (page/screen)
+class MovieListViewDetails extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrangeAccent.shade200,
+        title: Text('Movie'),
+      ),
+      body: Center(
+        child: Container(
+          child: RaisedButton(
+            child: Text('Go Back'),
+            onPressed: () {},
+            // onPressed: () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => MovieListView()));
+            // },
+          ),
+        ),
+      ),
     );
   }
 }
