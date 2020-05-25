@@ -47,7 +47,9 @@ class MovieListView extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => MovieListViewDetails()));
+                          builder: (context) => MovieListViewDetails(
+                                movieName: movies.elementAt(index),
+                              )));
                 },
               ),
             );
@@ -58,22 +60,25 @@ class MovieListView extends StatelessWidget {
 
 // New route (page/screen)
 class MovieListViewDetails extends StatelessWidget {
+  final String movieName;
+
+  const MovieListViewDetails({Key key, this.movieName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepOrangeAccent.shade200,
+        backgroundColor: Colors.black12,
         title: Text('Movie'),
       ),
+      backgroundColor: Colors.deepOrangeAccent.shade200,
       body: Center(
         child: Container(
           child: RaisedButton(
-            child: Text('Go Back'),
-            onPressed: () {},
-            // onPressed: () {
-            //   Navigator.push(context,
-            //       MaterialPageRoute(builder: (context) => MovieListView()));
-            // },
+            child: Text('Go Back ${this.movieName}'),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
         ),
       ),
