@@ -30,7 +30,13 @@ class MovieListView extends StatelessWidget {
       body: ListView.builder(
           itemCount: movieList.length,
           itemBuilder: (BuildContext context, int index) {
-            return movieCard(movieList[index], context);
+            return Stack(children: <Widget>[
+              movieCard(movieList[index], context),
+              Positioned(
+                  top: 10.0,
+                  left: 10.0,
+                  child: movieImage(movieList[index].images[0])),
+            ]);
             // return Card(
             //   elevation: 4.5,
             //   color: Colors.white,
@@ -72,6 +78,7 @@ class MovieListView extends StatelessWidget {
   Widget movieCard(Movie movie, BuildContext context) {
     return InkWell(
       child: Container(
+        margin: EdgeInsets.only(left: 59.0),
         width: MediaQuery.of(context).size.width,
         height: 120.0,
         child: Card(
@@ -103,7 +110,29 @@ class MovieListView extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () => debugPrint(movie.title),
+      onTap: () => {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MovieListViewDetails(
+                      movieName: movie.title,
+                      // movie.title,
+                      movie: movie,
+                    )))
+      },
+    );
+  }
+
+  Widget movieImage(String imageURL) {
+    return Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+              image: NetworkImage(imageURL ??
+                  'https://www.serole.com/wp-content/themes/aaika/assets/images/default.png'),
+              fit: BoxFit.cover)),
     );
   }
 }
