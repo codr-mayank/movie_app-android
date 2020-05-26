@@ -78,7 +78,7 @@ class MovieListView extends StatelessWidget {
   Widget movieCard(Movie movie, BuildContext context) {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.only(left: 59.0),
+        margin: EdgeInsets.only(left: 60.0),
         width: MediaQuery.of(context).size.width,
         height: 120.0,
         child: Card(
