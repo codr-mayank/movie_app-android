@@ -36,10 +36,16 @@ class MovieListView extends StatelessWidget {
               child: ListTile(
                 leading: CircleAvatar(
                   child: Container(
+                    width: 200,
+                    height: 200,
                     decoration: BoxDecoration(
                         // color: Colors.blue,
+                        image: DecorationImage(
+                          image: NetworkImage(movieList[index].poster),
+                          fit: BoxFit.cover
+                        ),
                         borderRadius: BorderRadius.circular(13.9)),
-                    child: Text('M'),
+                    child: null,
                   ),
                 ),
                 trailing: Text('...'),
@@ -53,6 +59,7 @@ class MovieListView extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => MovieListViewDetails(
                                 movieName: movieList.elementAt(index).title,
+                                movie: movieList[index],
                               )));
                 },
               ),
@@ -65,8 +72,9 @@ class MovieListView extends StatelessWidget {
 // New route (page/screen)
 class MovieListViewDetails extends StatelessWidget {
   final String movieName;
-
-  const MovieListViewDetails({Key key, this.movieName}) : super(key: key);
+  final Movie movie;
+  const MovieListViewDetails({Key key, this.movieName, this.movie})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +87,7 @@ class MovieListViewDetails extends StatelessWidget {
       body: Center(
         child: Container(
           child: RaisedButton(
-            child: Text('Go Back ${this.movieName}'),
+            child: Text('Go Back ${this.movie.director}'),
             onPressed: () {
               Navigator.pop(context);
             },
