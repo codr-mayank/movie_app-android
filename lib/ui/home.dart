@@ -82,30 +82,51 @@ class MovieListView extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 120.0,
         child: Card(
-          color: Colors.white38,
+          color: Colors.blueGrey,
           child: Padding(
             padding: const EdgeInsets.only(
                 top: 8.0, bottom: 8.0, left: 54.0, right: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(movie.title),
-                    Text('Rating: ${movie.imdbRating} / 10.0')
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: <Widget>[
-                    Text('Released: ${movie.released}'),
-                    Text(movie.runtime),
-                    Text(movie.rated)
-                  ],
-                )
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Flexible(
+                        child: Text(
+                          movie.title,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17.0,
+                              color: Colors.white),
+                        ),
+                      ),
+                      Text(
+                        'Rating: ${movie.imdbRating} / 10.0',
+                        style: TextStyle(
+                            fontSize: 15.0, color: Colors.yellowAccent),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: <Widget>[
+                      Text('${movie.released}'),
+                      Text(
+                        movie.runtime,
+                        style: mainTextStyle(),
+                      ),
+                      Text(
+                        movie.rated,
+                        style: mainTextStyle(),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
@@ -121,6 +142,10 @@ class MovieListView extends StatelessWidget {
                     )))
       },
     );
+  }
+
+  TextStyle mainTextStyle() {
+    return TextStyle(fontSize: 15.0, color: Colors.yellowAccent);
   }
 
   Widget movieImage(String imageURL) {
