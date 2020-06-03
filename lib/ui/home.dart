@@ -26,7 +26,7 @@ class MovieListView extends StatelessWidget {
         title: Text('Movies'),
         backgroundColor: Colors.black12,
       ),
-      backgroundColor: Colors.deepOrangeAccent.shade200,
+      backgroundColor: Colors.blueGrey.shade900,
       body: ListView.builder(
           itemCount: movieList.length,
           itemBuilder: (BuildContext context, int index) {
@@ -82,7 +82,7 @@ class MovieListView extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: 120.0,
         child: Card(
-          color: Colors.blueGrey,
+          color: Colors.blue.shade900,
           child: Padding(
             padding: const EdgeInsets.only(
                 top: 8.0, bottom: 8.0, left: 54.0, right: 8.0),
@@ -114,7 +114,8 @@ class MovieListView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Text('${movie.released}'),
+                      Text('${movie.released}',
+                          style: TextStyle(color: Colors.lightGreen)),
                       Text(
                         movie.runtime,
                         style: mainTextStyle(),
@@ -176,7 +177,7 @@ class MovieListViewDetails extends StatelessWidget {
         backgroundColor: Colors.black12,
         title: Text('Movie'),
       ),
-      backgroundColor: Colors.deepOrangeAccent.shade200,
+      backgroundColor: Colors.blueGrey.shade900,
       body: Center(
         child: Container(
           child: RaisedButton(
