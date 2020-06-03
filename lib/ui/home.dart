@@ -179,7 +179,10 @@ class MovieListViewDetails extends StatelessWidget {
       ),
       backgroundColor: Colors.blueGrey.shade900,
       body: ListView(
-        children: <Widget>[MovieDetailsThumbnail(thumbnail: movie.images[0])],
+        children: <Widget>[
+          MovieDetailsThumbnail(thumbnail: movie.images[0]),
+          MovieDetailsHeaderWithPoster(movie: movie)
+        ],
       ),
       // body: Center(
       //   child: Container(
@@ -223,6 +226,43 @@ class MovieDetailsThumbnail extends StatelessWidget {
           height: 80,
         )
       ],
+    );
+  }
+}
+
+class MovieDetailsHeaderWithPoster extends StatelessWidget {
+  final Movie movie;
+
+  const MovieDetailsHeaderWithPoster({Key key, this.movie}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        children: <Widget>[MoviePoster(poster: movie.images[0].toString())],
+      ),
+    );
+  }
+}
+
+class MoviePoster extends StatelessWidget {
+  final String poster;
+  const MoviePoster({Key key, this.poster}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    var borderRadius = BorderRadius.all(Radius.circular(10));
+    return Card(
+      child: ClipRRect(
+        borderRadius: borderRadius,
+        child: Container(
+          width: MediaQuery.of(context).size.width / 4,
+          height: 160,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: NetworkImage(poster), fit: BoxFit.cover)),
+        ),
+      ),
     );
   }
 }
