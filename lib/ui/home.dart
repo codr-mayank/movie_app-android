@@ -182,6 +182,7 @@ class MovieListViewDetails extends StatelessWidget {
         children: <Widget>[
           MovieDetailsThumbnail(thumbnail: movie.images[0]),
           MovieDetailsHeaderWithPoster(movie: movie),
+          HorizontalLine(),
           MovieDetailsCast(movie: movie),
           HorizontalLine()
         ],
