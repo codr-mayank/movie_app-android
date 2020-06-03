@@ -239,9 +239,13 @@ class MovieDetailsHeaderWithPoster extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
-        children: <Widget>[MoviePoster(poster: movie.images[0].toString())],
-      ),
+      child: Row(children: <Widget>[
+        MoviePoster(poster: movie.images[1].toString()),
+        SizedBox(
+          width: 16,
+        ),
+        Expanded(child: MovieDetailsHeader(movie: movie))
+      ]),
     );
   }
 }
@@ -263,6 +267,50 @@ class MoviePoster extends StatelessWidget {
                   image: NetworkImage(poster), fit: BoxFit.cover)),
         ),
       ),
+    );
+  }
+}
+
+class MovieDetailsHeader extends StatelessWidget {
+  final Movie movie;
+
+  const MovieDetailsHeader({Key key, this.movie}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            movie.title,
+            style: TextStyle(
+                color: Colors.cyanAccent,
+                fontWeight: FontWeight.w500,
+                fontSize: 24),
+          ),
+        ),
+        Text(
+          '${movie.year} . ${movie.genre}'.toUpperCase(),
+          style: TextStyle(
+              color: Colors.yellowAccent, fontWeight: FontWeight.w400),
+        ),
+        Text.rich(TextSpan(
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+            children: <TextSpan>[
+              TextSpan(
+                text: movie.plot,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 14),
+              ),
+              TextSpan(text: '. more...',style: TextStyle(
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.w300,
+                    fontSize: 14),)
+            ]))
+      ],
     );
   }
 }
